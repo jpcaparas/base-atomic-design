@@ -1,0 +1,7 @@
+*.log
+*.map
+.env
+.tmp
+/node_modules
+/vendor
+/public/assets/builds
