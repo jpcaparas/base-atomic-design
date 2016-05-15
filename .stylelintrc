@@ -1,5 +1,4 @@
-module.exports = {
-    'ignoreFiles': 'src/sass/fonts.scss',
+{
     'rules': {
         'color-hex-case': 'upper',
         'color-hex-length': 'long',
@@ -33,7 +32,6 @@ module.exports = {
         'property-no-vendor-prefix': true,
 
         'declaration-bang-space-after': 'never',
-        'declaration-bang-space-before': 'never',
 
         'declaration-block-no-duplicate-properties': true,
         'declaration-block-no-shorthand-property-overrides': true,
@@ -56,6 +54,7 @@ module.exports = {
                     'box-flex',
                     'box-orient',
                     'box-pack',
+                    'box-shadow',
                     'box-sizing',
                     'table-layout',
                     'display',
@@ -172,13 +171,12 @@ module.exports = {
                     'border-radius',
                     'border-top-right-radius',
                     'border-bottom-right-radius',
-                    'border-bottom-left-radius',
                     'border-top-left-radius',
+                    'border-bottom-left-radius',
                     'border-radius-topright',
                     'border-radius-bottomright',
                     'border-radius-bottomleft',
                     'border-radius-topleft',
-                    'box-shadow',
                     'content',
                     'quotes',
                     'outline',
@@ -225,4 +223,4 @@ module.exports = {
 
         'indentation': 4
     }
-};
+}
