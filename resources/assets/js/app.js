@@ -1,10 +1,10 @@
+import picturefill from 'picturefill'; // eslint-disable-line
 import svg4everybody from 'svg4everybody';
 
 
 /*
     Polyfills
  */
-
 svg4everybody({
     polyfill: true // polyfill <use> elements for External Content
 });
