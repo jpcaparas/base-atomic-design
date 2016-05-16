@@ -61,7 +61,6 @@
     "postcss-cssnext": "^2.5.2",
     "postcss-discard-duplicates": "^2.0.1",
     "postcss-easy-import": "^1.0.1",
-    "postcss-inline-comment": "^2.0.0",
     "postcss-loader": "^0.9.1",
     "postcss-mixins": "^4.0.1",
     "postcss-remify": "^1.0.1",
