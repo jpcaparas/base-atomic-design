@@ -51,16 +51,17 @@ $folder-image: ../images; /* No quotes, causes issues with Webpack */
     - tint-2
 
     // Darker
-    - tone-1
-    - tone-2
+    - shade-1
+    - shade-2
 
     Color names generated at http://chir.ag/projects/name-that-color/
  */
 $color-black:             rgb(0, 0, 0);
 $color-white:             rgb(255, 255, 255);
 
-$color-primary:           $color-white;
+$color-primary:           $color-black;
 $color-secondary:         $color-black;
+$color-tertiary:          $color-black;
 
 
 
@@ -85,3 +86,10 @@ $weight-bold:    500;
 $constrain-width:         rem(960);
 $constrain-width-medium:  rem(740);
 $constrain-width-small:   rem(600);
+
+
+
+/*
+    Padding
+ */
+$padding-width: 20;
