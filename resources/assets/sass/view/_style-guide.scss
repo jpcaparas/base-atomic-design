@@ -15,8 +15,8 @@
             display: block;
             width: rem(60);
             height: rem(60);
-            margin-right: rem($padding-width);
-            margin-bottom: rem($padding-width);
+            margin-right: $padding-width;
+            margin-bottom: $padding-width;
 
             font-size: 0;
 
