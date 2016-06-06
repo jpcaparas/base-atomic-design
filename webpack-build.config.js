@@ -6,8 +6,7 @@ const webpack           = require('webpack');
 
 const PATHS = {
     js: path.join (__dirname, 'resources/assets/js/'),
-    sass: path.join (__dirname, 'resources/assets/sass/'),
-    stylelint: path.join(__dirname, './.stylelintrc')
+    sass: path.join (__dirname, 'resources/assets/sass/')
 };
 
 const BROWSER_SUPPORT = [
@@ -55,9 +54,6 @@ module.exports = [{
             require('precss')({ browsers: BROWSER_SUPPORT }),
             require('postcss-cssnext')({ warnForDuplicates: false, browsers: BROWSER_SUPPORT })
         ];
-    },
-    stylelint: {
-        configFile: PATHS.stylelint
     }
 },
 {
@@ -105,5 +101,27 @@ module.exports = [{
                 loader: 'json-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            "process.env.NODE_ENV": JSON.stringify("production")
+        }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(false),
+        new webpack.optimize.UglifyJsPlugin({
+            beautify: false,
+            compress: {
+                conditionals: true,
+                dead_code: true,
+                drop_console: true,
+                drop_debugger: true,
+                warnings: false
+            },
+            mangle: {
+                props: false,
+                vars: true
+            },
+            sourceMap: false
+        })
+    ]
 }];
