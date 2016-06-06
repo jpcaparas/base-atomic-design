@@ -6,7 +6,7 @@
         'color-no-hex': true,
         'color-no-invalid-hex': true,
 
-        'font-family-name-quotes': 'single-where-required',
+        'font-family-name-quotes': 'always-where-required',
 
         'font-weight-notation': 'numeric',
 
@@ -17,7 +17,7 @@
         'function-comma-space-before': 'never',
         'function-linear-gradient-no-nonstandard-direction': true,
         'function-parentheses-space-inside': 'never',
-        'function-url-quotes': 'single',
+        'function-url-quotes': 'always',
 
         'number-leading-zero': 'always',
         'number-max-precision': 2,
@@ -37,7 +37,6 @@
         'declaration-block-no-shorthand-property-overrides': true,
         'declaration-block-properties-order': [
             {
-                emptyLineBefore: 'always',
                 properties: [
                     'position',
                     'top',
@@ -48,7 +47,6 @@
                 ]
             },
             {
-                emptyLineBefore: 'always',
                 properties: [
                     'box-align',
                     'box-flex',
@@ -99,7 +97,6 @@
                 ]
             },
             {
-                emptyLineBefore: 'always',
                 properties: [
                     'color',
                     'font',
@@ -133,7 +130,6 @@
                 ]
             },
             {
-                emptyLineBefore: 'always',
                 properties: [
                     'pointer-events',
                     'cursor',
@@ -189,7 +185,6 @@
                 ]
             },
             {
-                emptyLineBefore: 'always',
                 properties: [
                     'transform',
                     'animation',
