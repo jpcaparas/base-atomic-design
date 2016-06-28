@@ -8,4 +8,5 @@ script:
   - "npm run build"
 
 notifications:
+  email: false
   slack: pixelfusion:dLLeyABOp5Szu1c5nOLqvZ5U
