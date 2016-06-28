@@ -1,8 +1,26 @@
 /* eslint-disable */
-const path              = require('path');
-const LiveReloadPlugin  = require('webpack-livereload-plugin');
+
+/*
+    Includes
+ */
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const LiveReloadPlugin  = require('webpack-livereload-plugin');
+const path              = require('path');
 const webpack           = require('webpack');
+
+
+/*
+    Config
+ */
+const BROWSER_SUPPORT = [
+    'Chrome >= 50',
+    'ChromeAndroid >= 50',
+    'Safari >= 8',
+    'iOS >= 8',
+    'Firefox >= 44',
+    'Explorer >= 10',
+    'Opera >= 37'
+];
 
 const PATHS = {
     js: path.join (__dirname, 'resources/assets/js/'),
@@ -10,42 +28,70 @@ const PATHS = {
     stylelint: path.join(__dirname, './.stylelintrc')
 };
 
-const BROWSER_SUPPORT = [
-    'Chrome >= 47',
-    'Firefox >= 42',
-    'Explorer >= 10',
-    'Opera >= 12',
-    'Safari >= 8',
-    'ChromeAndroid >= 47',
-    'iOS >= 8'
-];
+const JS_LIBRARY_ALIASES = {
+    // TODO: Fill in as needed
+};
 
-module.exports = [{
-    name: 'CSS',
-    entry: [
-        PATHS.sass + 'app.scss'
-    ],
-    output: {
-        path:     './public/assets/builds',
-        filename: 'app.css'
+const OUTPUT_DIRECTORY = './public/assets/builds';
+const OUTPUT_CSS_FILE = 'app.css';
+
+const CSS_FILES = {
+    entry: {
+        'app': PATHS.sass + 'app.scss'
     },
+    output: {
+        path: OUTPUT_DIRECTORY,
+        filename: '[name].css'
+    }
+};
+
+const JS_FILES = {
+    entry: {
+        'polyfill': 'babel-polyfill',
+        'bundle': PATHS.js + 'app.js'
+    },
+    output: {
+        path: OUTPUT_DIRECTORY,
+        filename: '[name].js'
+    }
+};
+
+
+/*
+    Environment
+ */
+let ENV = 'development';
+if (process.argv.indexOf('--production') > 0) {
+    ENV = 'production';
+}
+
+
+/*
+    SCSS
+ */
+let css = {
+    name: 'CSS',
+    entry: CSS_FILES.entry,
+    output: CSS_FILES.output,
     module: {
         loaders: [
             {
                 test: /\.scss$/,
+                include: PATHS.sass,
                 loader: ExtractTextPlugin.extract(
-                    ['css?-url', 'postcss?parser=postcss-scss']
-                ),
-                include: PATHS.sass
+                    [
+                        'css?-url&sourceMap',
+                        'postcss?parser=postcss-scss'
+                    ]
+                )
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('app.css'),
-        new LiveReloadPlugin()
+        new ExtractTextPlugin(OUTPUT_CSS_FILE)
     ],
     postcss: function(webpack) {
-        return [
+        let modules = [
             require('postcss-easy-import')({ addDependencyTo: webpack, prefix: '_', extensions: ['.scss', '.css'] }), // Must be first item in list
             require('postcss-strip-inline-comments'),
             require('postcss-mixins'),
@@ -55,38 +101,68 @@ module.exports = [{
             require('precss')({ browsers: BROWSER_SUPPORT }),
             require('postcss-cssnext')({ warnForDuplicates: false, browsers: BROWSER_SUPPORT })
         ];
-    },
-    stylelint: {
-        configFile: PATHS.stylelint
-    }
-},
-{
-    name: 'JavaScript',
-    entry: [
-        PATHS.js + 'app.js'
-    ],
-    output: {
-        path:     './public/assets/builds',
-        filename: 'bundle.js'
-    },
-    node: "empty",
-    resolve: {
-        extensions: ['', '.js', '.jsx'],
-        alias: {
-            'eventEmitter/EventEmitter': 'wolfy87-eventemitter/EventEmitter',
-            'get-style-property/get-style-property': 'desandro-get-style-property/get-style-property',
-            'matches-selector/matches-selector': 'desandro-matches-selector/matches-selector',
-            'classie/classie': 'desandro-classie/classie',
-            'get-style-property': 'desandro-get-style-property',
-            'matches-selector': 'desandro-matches-selector',
-            'classie': 'desandro-classie'
+
+        if (ENV === 'production') {
+            modules.push(require('cssnano')({
+                calc: true,
+                colormin: true,
+                convertValues: true,
+                core: true,
+                discardComments: { removeAll: true },
+                discardDuplicates: true,
+                discardEmpty: true,
+                filterOptimiser: true,
+                filterPlugins: false,
+                functionOptimiser: true,
+                mergeLonghand: true
+            }));
         }
+
+        return modules;
+    }
+};
+
+if (ENV === 'development') {
+    css.devtool = '#source-map';
+
+    css.module.preLoaders = [
+        {
+            test: /\.scss$/,
+            loader: 'stylelint',
+            include: PATHS.sass
+        }
+    ];
+
+    css.plugins.push(new LiveReloadPlugin());
+
+    css.stylelint = {
+        configFile: PATHS.stylelint
+    };
+}
+
+
+/*
+    JS
+ */
+let js = {
+    name: 'JavaScript',
+    entry: JS_FILES.entry,
+    output: JS_FILES.output,
+    node: 'empty',
+    resolve: {
+        extensions: [
+            '',
+            '.js',
+            '.jsx'
+        ],
+        alias: JS_LIBRARY_ALIASES
     },
     module: {
         preLoaders: [
             {
                 test: /\.jsx?$/,
-                loaders: ['eslint'],
+                loader: 'eslint-loader',
+                exclude: /node_modules/,
                 include: PATHS.js
             }
         ],
@@ -94,6 +170,7 @@ module.exports = [{
             {
                 test:  /\.jsx?$/,
                 loader: 'babel-loader?cacheDirectory',
+                exclude: /node_modules/,
                 include: PATHS.js
             },
             {
@@ -102,8 +179,54 @@ module.exports = [{
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader'
+                loader: 'json-loader',
+                exclude: /node_modules/
             }
         ]
-    }
-}];
+    },
+    plugins: [
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
+    ]
+};
+
+if (ENV === 'development') {
+    js.devtool = '#source-map';
+
+    js.plugins.push(new webpack.DefinePlugin({
+        "process.env.RUN_ENV": JSON.stringify("browser")
+    }));
+}
+
+if (ENV === 'production') {
+    js.plugins.push(new webpack.DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify("production"),
+        "process.env.RUN_ENV": JSON.stringify("browser")
+    }));
+
+    js.plugins.push(new webpack.optimize.DedupePlugin());
+    js.plugins.push(new webpack.optimize.OccurrenceOrderPlugin(false));
+    js.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        beautify: false,
+        compress: {
+            conditionals: true,
+            dead_code: true,
+            drop_console: true,
+            drop_debugger: true,
+            warnings: false
+        },
+        output: {
+            comments: false,
+        },
+        mangle: {
+            props: false,
+            vars: true
+        },
+        sourceMap: false
+    }));
+}
+
+
+/*
+    Webpack export
+ */
+module.exports = [css, js];
