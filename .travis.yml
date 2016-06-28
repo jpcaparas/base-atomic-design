@@ -4,5 +4,8 @@ node_js:
   - "6"
 
 script:
-  - "npm lint"
-  - "npm build"
+  - "npm run lint"
+  - "npm run build"
+
+notifications:
+  slack: pixelfusion:dLLeyABOp5Szu1c5nOLqvZ5U
