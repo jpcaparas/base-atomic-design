@@ -1,5 +1,8 @@
 {
-  "plugins": ["transform-react-jsx"],
+  "plugins": [
+    "transform-object-assign",
+    "transform-react-jsx"
+  ],
   "presets": [
     "es2015",
     "es2015-ie",
