@@ -6,6 +6,7 @@
   "presets": [
     "es2015",
     "es2015-ie",
+    "es2016",
     "react"
   ]
 }
