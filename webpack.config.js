@@ -3,10 +3,12 @@
 /*
     Includes
  */
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const LiveReloadPlugin  = require('webpack-livereload-plugin');
-const path              = require('path');
-const webpack           = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');
+const LiveReloadPlugin   = require('webpack-livereload-plugin');
+const ManifestPlugin     = require('webpack-manifest-plugin');
+const path               = require('path');
+const webpack            = require('webpack');
 
 
 /*
@@ -23,6 +25,7 @@ const BROWSER_SUPPORT = [
 ];
 
 const PATHS = {
+    dist: path.join(__dirname, './public/assets/builds'),
     js: path.join (__dirname, 'resources/assets/js/'),
     sass: path.join (__dirname, 'resources/assets/sass/'),
     stylelint: path.join(__dirname, './.stylelintrc')
@@ -32,7 +35,6 @@ const JS_LIBRARY_ALIASES = {
     // TODO: Fill in as needed
 };
 
-const OUTPUT_DIRECTORY = './public/assets/builds';
 const OUTPUT_CSS_FILE = 'app.css';
 
 const CSS_FILES = {
@@ -40,8 +42,9 @@ const CSS_FILES = {
         'app': PATHS.sass + 'app.scss'
     },
     output: {
-        path: OUTPUT_DIRECTORY,
-        filename: '[name].css'
+        path: PATHS.dist,
+        filename: '[name].[chunkhash].css',
+        publicPath: PATHS.dist
     }
 };
 
@@ -51,8 +54,9 @@ const JS_FILES = {
         'bundle': PATHS.js + 'app.js'
     },
     output: {
-        path: OUTPUT_DIRECTORY,
-        filename: '[name].js'
+        path: PATHS.dist,
+        filename: '[name].[chunkhash].js',
+        publicPath: PATHS.dist
     }
 };
 
@@ -64,6 +68,12 @@ let ENV = 'development';
 if (process.argv.indexOf('--production') > 0) {
     ENV = 'production';
 }
+
+
+/*
+    Manifest cache
+ */
+let cache = {};
 
 
 /*
@@ -88,7 +98,8 @@ let css = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin(OUTPUT_CSS_FILE)
+        new ExtractTextPlugin(CSS_FILES.output.filename, { allChunks: true }),
+        new ManifestPlugin({ cache: cache })
     ],
     postcss: function(webpack) {
         let modules = [
@@ -185,7 +196,9 @@ let js = {
         ]
     },
     plugins: [
-        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
+        new ManifestPlugin({ cache: cache }),
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
+        new CleanWebpackPlugin([PATHS.dist])
     ]
 };
 
