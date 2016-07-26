@@ -20,7 +20,7 @@
     "postinstall": "npm run build",
     "preinstall": "cp ./setup/git-hooks/* ./.git/hooks && chmod +x ./.git/hooks/pre-*",
     "unit": "jest --bail",
-    "watch": "parallel-webpack --watch --no-stats"
+    "watch": "webpack --watch --no-stats"
   },
   "jest": {
     "testDirectoryName": "tests/unit",
