@@ -23,6 +23,7 @@
   ],
   "rules": {
     "react/no-danger": 0,
+    "react/no-find-dom-node": "error",
     "filenames/match-regex": [
       "error",
       "^[a-z-]+$"
