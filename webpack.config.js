@@ -35,8 +35,6 @@ const JS_LIBRARY_ALIASES = {
     // TODO: Fill in as needed
 };
 
-const OUTPUT_CSS_FILE = 'app.css';
-
 const CSS_FILES = {
     entry: {
         'app': PATHS.sass + 'app.scss'
