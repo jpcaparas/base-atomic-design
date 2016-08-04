@@ -5,11 +5,11 @@
 
 Used by the Front End team at [Pixel Fusion](https://pixelfusion.co.nz), a Product Design studio based in Auckland, New Zealand.
 
-### Installing
+## Installing
 
 Run `npm install` to install the project.
 
-### Running
+## Running
 
 Run `webpack --watch` to watch and compile the Javascript and SCSS files. The project uses:
 
@@ -18,7 +18,7 @@ Run `webpack --watch` to watch and compile the Javascript and SCSS files. The pr
     - Autoprefixer, to take care of those pesky prefixes...which are [being phased out](https://webkit.org/blog/6131/updating-our-prefixing-policy/)!
 - Jest, to handle Unit testing of the Javascript.
 
-### Browser Support
+## Browser Support
 
 Supported and tested in the following browsers:
 
@@ -28,17 +28,17 @@ Supported and tested in the following browsers:
 - Safari 9
 - Edge 14
 
-### Polyfills
+## Polyfills
 
 - [SVG4Everybody](https://github.com/jonathantneal/svg4everybody) - Adds the ability to implement `<use></use>` SVG element in older browsers (IE10), for use with external SVG loading.
 - [Picturefill](http://scottjehl.github.io/picturefill) - Adds support for the <picture> element to older browsers (Internet Explorer and older versions of Safari).
 
 
-### Gotchas
+## Gotchas
 
 - Always set width and height on <svg> elements which implement external `<use>` elements, otherwise Internet Explorer does not display them.
 
-### Inspiration
+## Inspiration
 
 Our base HTML is inspired by:
 
