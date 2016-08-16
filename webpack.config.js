@@ -12,6 +12,16 @@ const webpack            = require('webpack');
 
 
 /*
+    Environment
+ */
+let ENV = 'development';
+if (process.argv.indexOf('--production') > 0) {
+    ENV = 'production';
+}
+
+
+
+/*
     Config
  */
 const BROWSER_SUPPORT = [
@@ -25,10 +35,12 @@ const BROWSER_SUPPORT = [
 ];
 
 const PATHS = {
-    dist: path.join(__dirname, './public/assets/builds'),
+    devserver: 'http://localhost:3000/static/',
+    devurl: 'http://localhost:3000',
+    dist: path.join(__dirname, 'public/assets/builds/'),
     js: path.join (__dirname, 'resources/assets/js/'),
     sass: path.join (__dirname, 'resources/assets/sass/'),
-    stylelint: path.join(__dirname, './.stylelintrc')
+    stylelint: path.join(__dirname, '.stylelintrc')
 };
 
 const JS_LIBRARY_ALIASES = {
@@ -41,31 +53,36 @@ const CSS_FILES = {
     },
     output: {
         path: PATHS.dist,
-        filename: '[name].[chunkhash].css',
-        publicPath: PATHS.dist
-    }
-};
-
-const JS_FILES = {
-    entry: {
-        'polyfill': 'babel-polyfill',
-        'bundle': PATHS.js + 'app.js'
-    },
-    output: {
-        path: PATHS.dist,
-        filename: '[name].[chunkhash].js',
-        publicPath: PATHS.dist
+        filename: (ENV === 'development') ? '[name].css' : '[name].[chunkhash].css',
+        publicPath: PATHS.devserver
     }
 };
 
 
 /*
-    Environment
+    Javascript bundle
  */
-let ENV = 'development';
-if (process.argv.indexOf('--production') > 0) {
-    ENV = 'production';
+let bundle = PATHS.js + 'app.js';
+
+if (ENV === 'development') {
+    bundle = [
+        'webpack-dev-server/client?' + PATHS.devurl,
+        'webpack/hot/only-dev-server',
+        PATHS.js + 'app.js'
+    ];
 }
+
+const JS_FILES = {
+    entry: {
+        'polyfill': 'babel-polyfill',
+        'bundle': bundle
+    },
+    output: {
+        path: PATHS.dist,
+        filename: (ENV === 'development') ? '[name].js' : '[name].[chunkhash].js',
+        publicPath: PATHS.devserver
+    }
+};
 
 
 /*
@@ -96,8 +113,7 @@ let css = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin(CSS_FILES.output.filename, { allChunks: true }),
-        new ManifestPlugin({ cache: cache })
+        new ExtractTextPlugin(CSS_FILES.output.filename, { allChunks: true })
     ],
     postcss: function(webpack) {
         let modules = [
@@ -131,6 +147,10 @@ let css = {
     }
 };
 
+if (ENV === 'production') {
+    css.plugins.push(new ManifestPlugin({ cache: cache }));
+}
+
 if (ENV === 'development') {
     css.devtool = '#source-map';
 
@@ -143,6 +163,8 @@ if (ENV === 'development') {
     ];
 
     css.plugins.push(new LiveReloadPlugin());
+    css.plugins.push(new webpack.HotModuleReplacementPlugin());
+    css.plugins.push(new webpack.NoErrorsPlugin());
 
     css.stylelint = {
         configFile: PATHS.stylelint
@@ -178,7 +200,7 @@ let js = {
         loaders: [
             {
                 test:  /\.jsx?$/,
-                loader: 'babel-loader?cacheDirectory',
+                loader: (ENV === 'development') ? 'react-hot!babel-loader?cacheDirectory' : 'babel-loader?cacheDirectory',
                 exclude: /node_modules/,
                 include: PATHS.js
             },
@@ -194,15 +216,16 @@ let js = {
         ]
     },
     plugins: [
-        new ManifestPlugin({ cache: cache }),
-        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
-        new CleanWebpackPlugin([PATHS.dist])
+        new CleanWebpackPlugin([PATHS.dist]),
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
     ]
 };
 
 if (ENV === 'development') {
     js.devtool = '#source-map';
 
+    js.plugins.push(new webpack.HotModuleReplacementPlugin());
+    js.plugins.push(new webpack.NoErrorsPlugin());
     js.plugins.push(new webpack.DefinePlugin({
         "process.env.RUN_ENV": JSON.stringify("browser")
     }));
@@ -214,6 +237,7 @@ if (ENV === 'production') {
         "process.env.RUN_ENV": JSON.stringify("browser")
     }));
 
+    js.plugins.push(new ManifestPlugin({ cache: cache }));
     js.plugins.push(new webpack.optimize.DedupePlugin());
     js.plugins.push(new webpack.optimize.OccurrenceOrderPlugin(false));
     js.plugins.push(new webpack.optimize.UglifyJsPlugin({

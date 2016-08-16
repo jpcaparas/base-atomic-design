@@ -11,7 +11,7 @@ Run `npm install` to install the project.
 
 ## Running
 
-Run `webpack --watch` to watch and compile the Javascript and SCSS files. The project uses:
+Run `npm run watch` to watch and compile the Javascript and SCSS files. The project uses:
 
 - Babel, to provide ES6 support.
 - PostCSS, to allow us to use:
