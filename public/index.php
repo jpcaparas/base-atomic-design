@@ -1,3 +1,36 @@
+<?php
+if (! function_exists('webpack')) {
+    /**
+     * Get the path to an asset file handled with Webpack.
+     *
+     * @param  string  $file
+     * @param  string  $buildDirectory
+     * @param  string  $devUrl
+     * @return string
+     *
+     * @throws \InvalidArgumentException
+     */
+    function webpack($file, $buildDirectory = 'public/assets/builds', $devUrl = 'http://localhost:3000/static')
+    {
+        static $manifest;
+        static $manifestPath;
+
+        if (is_null($manifest) || $manifestPath !== $buildDirectory) {
+            // Check manifest file exists
+            if (file_exists($buildDirectory.'/manifest.json')) {
+                $manifest = json_decode(file_get_contents($buildDirectory.'/manifest.json'), true);
+                $manifestPath = $buildDirectory;
+            } else {
+                return $devUrl.'/'.$file;
+            }
+        }
+
+        if (isset($manifest[$file])) {
+            return '/'.trim($buildDirectory.'/'.$manifest[$file], '/');
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -61,9 +94,8 @@
         <link rel="canonical" href=""/><!-- TODO -->
 
         <link rel="icon" href="/favicon.ico"/>
+        <link rel="stylesheet" href="<?= webpack('app.css') ?>"/>
         <!-- <link rel="manifest" href="manifest.json"> TODO: Remove if not needed -->
-        <!-- TODO: Add a file versioner to process the 'manifest.json' file -->
-        <!-- <link rel="stylesheet" href="/assets/builds/app.css"/> -->
 
         <!-- Prefetching, preloading, prebrowsing -->
         <!-- TODO: Remove if not needed
@@ -75,9 +107,8 @@
         <link rel="preload" href="image.png"/>
         -->
 
-        <!-- TODO: Add a file versioner to process the 'manifest.json' file -->
-        <!-- <script src="/assets/builds/polyfill.js" defer></script> -->
-        <!-- <script src="/assets/builds/bundle.js" defer></script> -->
+        <script src="<?= webpack('polyfill.js') ?>" defer></script>
+        <script src="<?= webpack('bundle.js') ?>" defer></script>
     </head>
     <body>
         <header class="header" role="banner">
