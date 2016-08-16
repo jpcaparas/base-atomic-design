@@ -3,6 +3,4 @@
 # Fix path so GUIs know where to find npm
 PATH="$PATH:/usr/local/bin"
 
-npm run lint-js --silent || exit 1
-npm run lint-scss --silent || exit 1
-npm run unit --silent || exit 1
+npm test --silent || exit 1
