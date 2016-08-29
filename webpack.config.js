@@ -46,7 +46,7 @@ const PATHS = {
 };
 
 const JS_LIBRARY_ALIASES = {
-    // TODO: Fill in as needed
+    // Fill in as needed
 };
 
 const CSS_FILES = {
