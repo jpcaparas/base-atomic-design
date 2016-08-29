@@ -84,6 +84,7 @@
     "stylelint": "^7.0.3",
     "stylelint-loader": "^6.0.0",
     "webpack": "^1.13.1",
+    "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.14.1",
     "webpack-livereload-plugin": "^0.8.1",
     "webpack-manifest-plugin": "^1.0.1"

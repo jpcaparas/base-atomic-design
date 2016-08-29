@@ -4,6 +4,8 @@
  */
 const config           = require('./webpack.config');
 const cors             = require('cors');
+const Dashboard        = require('webpack-dashboard');
+const DashboardPlugin  = require('webpack-dashboard/plugin');
 const path             = require('path');
 const webpack          = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -12,12 +14,19 @@ const CONTENT_BASE = config[0].output.path;
 const PORT = 3000;
 const PUBLIC_PATH = config[0].output.publicPath;
 
+let app,
+    compiler = webpack(config),
+    dashboard = new Dashboard();
 
-let app = new WebpackDevServer(webpack(config), {
+compiler.apply(new DashboardPlugin(dashboard.setData));
+
+
+app = new WebpackDevServer(compiler, {
     contentBase: CONTENT_BASE,
     historyApiFallback: true,
     hot: true,
-    publicPath: PUBLIC_PATH
+    publicPath: PUBLIC_PATH,
+    quiet: true, // lets WebpackDashboard do its thing
 });
 
 
