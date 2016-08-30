@@ -194,7 +194,12 @@
         "after": true
       }
     ],
-    "sort-vars": "error",
+    "sort-vars": [
+      "error",
+      {
+        "ignoreCase": true
+      }
+    ],
     "space-before-blocks": "error",
     "space-before-function-paren": [
       "error",
