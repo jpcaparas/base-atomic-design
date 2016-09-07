@@ -18,6 +18,26 @@ Run `npm run watch` to watch and compile the Javascript and SCSS files. The proj
     - Autoprefixer, to take care of those pesky prefixes...which are [being phased out](https://webkit.org/blog/6131/updating-our-prefixing-policy/)!
 - Jest, to handle Unit testing of the Javascript.
 
+## Linting
+
+To run both linters, use the following command:
+
+	npm run lint
+
+To just run the Javascript linter:
+
+	npm run lint-js
+
+To just run the SASS/CSS linter:
+
+	npm run lint-scss
+
+## Testing
+
+To run the Jest unit tests, use the following command:
+
+	npm test
+
 ## Browser Support
 
 Supported and tested in the following browsers:
