@@ -37,6 +37,7 @@
     "block-scoped-var": "error",
     "dot-notation": "error",
     "eqeqeq": "error",
+    "no-console": "warn",
     "no-div-regex": "error",
     "no-else-return": "error",
     "no-empty-function": "error",
@@ -57,6 +58,7 @@
     "no-magic-numbers": [
       "error",
       {
+        "ignore": [0, 1],
         "ignoreArrayIndexes": true
       }
     ],
