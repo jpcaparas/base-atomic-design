@@ -1,6 +1,6 @@
-# Base Atomic Design
+# Base Front End
 
-[![Build Status](http://img.shields.io/travis/pixelfusion/base-atomic-design/master.svg?style=flat-square)](https://travis-ci.org/pixelfusion/base-atomic-design)
+[![Build Status](http://img.shields.io/travis/pixelfusion/base-front-end/master.svg?style=flat-square)](https://travis-ci.org/pixelfusion/base-front-end)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Used by the Front End team at [Pixel Fusion](https://pixelfusion.co.nz), a Product Design studio based in Auckland, New Zealand.

@@ -1,16 +1,17 @@
 {
-  "name": "base-atomic-design",
-  "version": "1.0.0",
-  "description": "Bootstrap to get your next project off the ground, based on Atomic Design thinking.",
+  "name": "base-front-end",
+  "version": "1.1.0",
+  "description": "Front End bootstrap to get your next project off the ground, based on Atomic Design thinking.",
   "license": "UNLICENSED",
   "private": true,
   "author": "Te Riu Warren <te@pixelfusion.co.nz>",
   "contributors": [
-    "Tia Aoake <tia@pixelfusion.co.nz>",
     "Damian Peterson <dp@pixelfusion.co.nz>",
+    "Hal Smith Stevens <hal@pixelfusion.co.nz>",
+    "Tia Aoake <tia@pixelfusion.co.nz>",
     "Wouter Peschier <wouter@pixelfusion.co.nz>"
   ],
-  "main": "public/index.html",
+  "main": "public/index.php",
   "keywords": [],
   "scripts": {
     "build": "webpack --production",
@@ -34,9 +35,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/pixelfusion/base-atomic-design.git"
+    "url": "git+ssh://git@github.com/pixelfusion/base-front-end.git"
   },
-  "homepage": "https://github.com/pixelfusion/base-atomic-design#readme",
+  "homepage": "https://github.com/pixelfusion/base-front-end#readme",
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-jest": "^15.0.0",
