@@ -30,7 +30,7 @@
 /*
     Asset Locations
  */
-$folder-image: ../assets/images; /* No quotes, causes issues with Webpack */
+$folder-image: /assets/images; /* No quotes, causes issues with Webpack */
 
 
 
