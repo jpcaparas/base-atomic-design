@@ -38,6 +38,7 @@
     "dot-notation": "error",
     "eqeqeq": "error",
     "no-console": "warn",
+    "no-debugger": "warn",
     "no-div-regex": "error",
     "no-else-return": "error",
     "no-empty-function": "error",
