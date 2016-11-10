@@ -19,7 +19,8 @@
   "plugins": [
     "babel",
     "react",
-    "filenames"
+    "filenames",
+    "import"
   ],
   "rules": {
     "react/no-danger": 0,
@@ -28,6 +29,7 @@
       "error",
       "^[a-z-]+$"
     ],
+    "import/named": "error",
     "strict": [
       "error",
       "global"
