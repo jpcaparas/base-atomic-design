@@ -14,13 +14,8 @@ const webpack            = require('webpack');
 /*
     Environment
  */
-let ENV = 'development',
-    REACT = false;
-
-if (process.argv.indexOf('--production') > 0) {
-    ENV = 'production';
-}
-
+let ENV = 'development';
+if (process.argv.indexOf('--production') > 0) ENV = 'production';
 
 
 /*
@@ -202,7 +197,7 @@ let js = {
         loaders: [
             {
                 test:  /\.jsx?$/,
-                loader: (ENV === 'development' && REACT) ? 'react-hot!babel-loader?cacheDirectory' : 'babel-loader?cacheDirectory',
+                loader: 'babel-loader?cacheDirectory',
                 exclude: /node_modules/,
                 include: PATHS.js
             },
