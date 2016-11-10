@@ -32,7 +32,7 @@ const BROWSER_SUPPORT = [
     'Safari >= 9',
     'iOS >= 9',
     'Firefox >= 44',
-    'Explorer >= 10',
+    'Explorer >= 11',
     'Opera >= 37'
 ];
 
