@@ -27,13 +27,13 @@ if (process.argv.indexOf('--production') > 0) {
     Config
  */
 const BROWSER_SUPPORT = [
-    'Chrome >= 50',
-    'ChromeAndroid >= 50',
+    'Chrome >= 53',
+    'ChromeAndroid >= 53',
     'Safari >= 9',
     'iOS >= 9',
-    'Firefox >= 44',
+    'Firefox >= 48',
     'Explorer >= 11',
-    'Opera >= 37'
+    'Opera >= 40'
 ];
 
 const PATHS = {
