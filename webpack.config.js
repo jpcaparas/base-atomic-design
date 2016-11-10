@@ -40,8 +40,8 @@ const PATHS = {
     devserver: 'http://localhost:3000/static/',
     devurl: 'http://localhost:3000',
     dist: path.join(__dirname, 'public/assets/builds/'),
-    js: path.join (__dirname, 'resources/assets/js/'),
-    sass: path.join (__dirname, 'resources/assets/sass/'),
+    js: path.join (__dirname, 'client/js/'),
+    sass: path.join (__dirname, 'client/sass/'),
     stylelint: path.join(__dirname, '.stylelintrc')
 };
 
