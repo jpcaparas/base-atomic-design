@@ -29,8 +29,8 @@ if (process.argv.indexOf('--production') > 0) {
 const BROWSER_SUPPORT = [
     'Chrome >= 50',
     'ChromeAndroid >= 50',
-    'Safari >= 8',
-    'iOS >= 8',
+    'Safari >= 9',
+    'iOS >= 9',
     'Firefox >= 44',
     'Explorer >= 10',
     'Opera >= 37'
