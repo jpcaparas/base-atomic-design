@@ -1,6 +1,6 @@
 {
   "name": "base-front-end",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Front End bootstrap to get your next project off the ground, based on Atomic Design thinking.",
   "license": "UNLICENSED",
   "private": true,
@@ -22,7 +22,7 @@
     "postinstall": "npm run build",
     "preinstall": "cp ./setup/git-hooks/* ./.git/hooks && chmod +x ./.git/hooks/pre-*",
     "test-unit": "jest",
-    "watch": "node server.js"
+    "watch": "node webpack.server.js"
   },
   "jest": {
     "testRegex": "(/tests/unit/.*|\\.(test|spec))\\.(js|jsx)$",
