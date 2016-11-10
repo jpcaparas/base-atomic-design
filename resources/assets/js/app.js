@@ -1,4 +1,3 @@
-import picturefill from 'picturefill'; // eslint-disable-line
 import svg4everybody from 'svg4everybody';
 
 
@@ -8,4 +7,4 @@ import svg4everybody from 'svg4everybody';
 svg4everybody();
 
 
-console.warn('Fill in the app.js file'); // eslint-disable-line
+console.warn('Fill in the app.js file');

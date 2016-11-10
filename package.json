@@ -86,7 +86,6 @@
   },
   "dependencies": {
     "normalize.css": "^5.0.0",
-    "picturefill": "^3.0.2",
     "svg4everybody": "^2.0.3"
   }
 }

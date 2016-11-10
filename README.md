@@ -56,8 +56,6 @@ Supported and tested in the following browsers:
 ## Polyfills
 
 - [SVG4Everybody](https://github.com/jonathantneal/svg4everybody) - Adds the ability to implement `<use></use>` SVG element in older browsers (IE10), for use with external SVG loading.
-- [Picturefill](http://scottjehl.github.io/picturefill) - Adds support for the <picture> element to older browsers (Internet Explorer and older versions of Safari).
-
 
 ## Gotchas
 
