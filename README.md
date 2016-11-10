@@ -5,13 +5,18 @@
 
 Used by the Front End team at [Pixel Fusion](https://pixelfusion.co.nz), a Product Design studio based in Auckland, New Zealand.
 
+## Requirements
+- Node.js > 6.3.0 (`brew install node`)
+- NPM > 3.10.0 (installed as part of Node.js)
+- Yarn > 0.16.0 (`npm install -g yarn`)
+
 ## Installing
 
-Run `npm install` to install the project.
+Run `yarn install` to install the project.
 
 ## Running
 
-Run `npm run watch` to watch and compile the Javascript and SCSS files. The project uses:
+Run `yarn run watch` to watch and compile the Javascript and SCSS files. The project uses:
 
 - Babel, to provide ES6 support.
 - PostCSS, to allow us to use:
@@ -22,21 +27,21 @@ Run `npm run watch` to watch and compile the Javascript and SCSS files. The proj
 
 To run both linters, use the following command:
 
-	npm run lint
+	yarn run lint
 
 To just run the Javascript linter:
 
-	npm run lint-js
+	yarn run lint-js
 
 To just run the SASS/CSS linter:
 
-	npm run lint-scss
+	yarn run lint-scss
 
 ## Testing
 
 To run the Jest unit tests, use the following command:
 
-	npm test
+	yarn test
 
 ## Browser Support
 

@@ -15,11 +15,11 @@
   "keywords": [],
   "scripts": {
     "build": "webpack --production",
-    "test": "npm run build && npm run lint && npm run test-unit",
-    "lint": "npm run lint-scss && npm run lint-js",
+    "test": "yarn run build && yarn run lint && yarn run test-unit",
+    "lint": "yarn run lint-scss && yarn run lint-js",
     "lint-js": "eslint \"resources/assets/js/**/*.{js,jsx}\" --quiet --fix",
     "lint-scss": "stylelint resources/assets/sass/**/*.scss --syntax scss",
-    "postinstall": "npm run build",
+    "postinstall": "yarn run build",
     "preinstall": "cp ./setup/git-hooks/* ./.git/hooks && chmod +x ./.git/hooks/pre-*",
     "test-unit": "jest",
     "watch": "node webpack.server.js"
@@ -40,7 +40,7 @@
   "homepage": "https://github.com/pixelfusion/base-front-end#readme",
   "devDependencies": {
     "babel-core": "^6.9.1",
-    "babel-jest": "^15.0.0",
+    "babel-jest": "^17.0.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
@@ -60,7 +60,7 @@
     "extend": "^3.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "imports-loader": "^0.6.5",
-    "jest-cli": "^15.0.0",
+    "jest-cli": "^17.0.0",
     "json-loader": "^0.5.4",
     "path": "^0.12.7",
     "postcss": "^5.0.20",
