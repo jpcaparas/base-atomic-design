@@ -1,12 +1,12 @@
 {
   "plugins": [
+    "react-hot-loader/babel",
     "transform-object-assign",
-    "transform-react-jsx",
-    "react-hot-loader/babel"
+    "transform-react-jsx"
   ],
   "presets": [
-    "es2015",
     "es2015-ie",
+    "es2015",
     "es2016",
     "react"
   ]

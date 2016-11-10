@@ -36,6 +36,7 @@ const PATHS = {
     devurl: 'http://localhost:3000',
     dist: path.join(__dirname, 'public/assets/builds/'),
     js: path.join (__dirname, 'client/js/'),
+    root: path.resolve('./client/js'),
     sass: path.join (__dirname, 'client/sass/'),
     stylelint: path.join(__dirname, '.stylelintrc')
 };
@@ -178,12 +179,13 @@ let js = {
     output: JS_FILES.output,
     node: 'empty',
     resolve: {
+        alias: JS_LIBRARY_ALIASES,
         extensions: [
             '',
             '.js',
             '.jsx'
         ],
-        alias: JS_LIBRARY_ALIASES
+        root: PATHS.root
     },
     module: {
         preLoaders: [
