@@ -1,6 +1,6 @@
-# Base Front End
+# Front End Stack
 
-[![Build Status](http://img.shields.io/travis/pixelfusion/base-front-end/master.svg?style=flat-square)](https://travis-ci.org/pixelfusion/base-front-end)
+[![Build Status](http://img.shields.io/travis/pixelfusion/front-end-stack/master.svg?style=flat-square)](https://travis-ci.org/pixelfusion/front-end-stack)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Used by the Front End team at [Pixel Fusion](https://pixelfusion.co.nz), a Product Design studio based in Auckland, New Zealand.

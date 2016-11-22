@@ -1,6 +1,6 @@
 {
-  "name": "base-front-end",
-  "version": "1.2.0",
+  "name": "front-end-stack",
+  "version": "2.0.0",
   "description": "Front End bootstrap to get your next project off the ground, based on Atomic Design thinking.",
   "license": "UNLICENSED",
   "private": true,
@@ -35,9 +35,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/pixelfusion/base-front-end.git"
+    "url": "git+ssh://git@github.com/pixelfusion/front-end-stack.git"
   },
-  "homepage": "https://github.com/pixelfusion/base-front-end#readme",
+  "homepage": "https://github.com/pixelfusion/front-end-stack#readme",
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-jest": "^17.0.0",
