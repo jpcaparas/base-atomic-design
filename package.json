@@ -2,8 +2,10 @@
   "name": "front-end-stack",
   "version": "2.0.0",
   "description": "Front End bootstrap to get your next project off the ground, based on Atomic Design thinking.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
+  "repository": "pixelfusion/front-end-stack",
+  "homepage": "https://github.com/pixelfusion/front-end-stack#readme",
   "author": "Te Riu Warren <te@pixelfusion.co.nz>",
   "contributors": [
     "Damian Peterson <dp@pixelfusion.co.nz>",
@@ -11,6 +13,12 @@
     "Tia Aoake <tia@pixelfusion.co.nz>",
     "Wouter Peschier <wouter@pixelfusion.co.nz>"
   ],
+  "bugs": {
+    "url": "https://github.com/pixelfusion/front-end-stack/issues"
+  },
+  "engines": {
+    "node": ">=6"
+  },
   "main": "public/index.php",
   "keywords": [],
   "scripts": {
@@ -33,11 +41,6 @@
       "jsx"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/pixelfusion/front-end-stack.git"
-  },
-  "homepage": "https://github.com/pixelfusion/front-end-stack#readme",
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-jest": "^17.0.0",
