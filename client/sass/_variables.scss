@@ -18,23 +18,19 @@
 @custom-media --to-medium-screen-w (max-width: 800px);
 @custom-media --to-normal-screen-w (max-width: 1000px);
 @custom-media --to-large-screen-w (max-width: 1200px);
-@custom-media --to-x-large-screen-w (max-width: 1380px);
-@custom-media --to-max-screen-w (min-width: 2060px);
 
 @custom-media --from-tiny-screen-w (min-width: 401px);
 @custom-media --from-small-screen-w (min-width: 601px);
 @custom-media --from-medium-screen-w (min-width: 801px);
 @custom-media --from-normal-screen-w (min-width: 1001px);
 @custom-media --from-large-screen-w (min-width: 1201px);
-@custom-media --from-x-large-screen-w (min-width: 1380px);
-@custom-media --from-max-screen-w (min-width: 2020px);
 
 
 
 /*
     Asset Locations
  */
-$folder-image: ../images; /* No quotes, causes issues with Webpack */
+$folder-image: /assets/images; /* No quotes, causes issues with Webpack */
 
 
 

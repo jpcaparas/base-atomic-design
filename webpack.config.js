@@ -14,39 +14,35 @@ const webpack            = require('webpack');
 /*
     Environment
  */
-let ENV = 'development',
-    REACT = false;
-
-if (process.argv.indexOf('--production') > 0) {
-    ENV = 'production';
-}
-
+let ENV = 'development';
+if (process.argv.indexOf('--production') > 0) ENV = 'production';
 
 
 /*
     Config
  */
 const BROWSER_SUPPORT = [
-    'Chrome >= 50',
-    'ChromeAndroid >= 50',
-    'Safari >= 8',
-    'iOS >= 8',
-    'Firefox >= 44',
-    'Explorer >= 10',
-    'Opera >= 37'
+    'Chrome >= 53',
+    'ChromeAndroid >= 53',
+    'Safari >= 9',
+    'iOS >= 9',
+    'Firefox >= 48',
+    'Explorer >= 11',
+    'Opera >= 40'
 ];
 
 const PATHS = {
     devserver: 'http://localhost:3000/static/',
     devurl: 'http://localhost:3000',
     dist: path.join(__dirname, 'public/assets/builds/'),
-    js: path.join (__dirname, 'resources/assets/js/'),
-    sass: path.join (__dirname, 'resources/assets/sass/'),
+    js: path.join (__dirname, 'client/js/'),
+    root: path.resolve('./client/js'),
+    sass: path.join (__dirname, 'client/sass/'),
     stylelint: path.join(__dirname, '.stylelintrc')
 };
 
 const JS_LIBRARY_ALIASES = {
-    // TODO: Fill in as needed
+    // Fill in as needed
 };
 
 const CSS_FILES = {
@@ -183,12 +179,13 @@ let js = {
     output: JS_FILES.output,
     node: 'empty',
     resolve: {
+        alias: JS_LIBRARY_ALIASES,
         extensions: [
             '',
             '.js',
             '.jsx'
         ],
-        alias: JS_LIBRARY_ALIASES
+        root: PATHS.root
     },
     module: {
         preLoaders: [
@@ -202,7 +199,7 @@ let js = {
         loaders: [
             {
                 test:  /\.jsx?$/,
-                loader: (ENV === 'development' && REACT) ? 'react-hot!babel-loader?cacheDirectory' : 'babel-loader?cacheDirectory',
+                loader: 'babel-loader?cacheDirectory',
                 exclude: /node_modules/,
                 include: PATHS.js
             },

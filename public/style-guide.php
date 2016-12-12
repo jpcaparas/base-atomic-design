@@ -1,9 +1,12 @@
+<?php require_once('../helpers.php'); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <title>Style Guide</title>
 
-        <!-- <link rel="stylesheet" href="/assets/builds/app.css"/> -->
+        <link rel="stylesheet" href="<?= webpack('app.css') ?>"/>
+        <script src="<?= webpack('polyfill.js') ?>" defer></script>
+        <script src="<?= webpack('bundle.js') ?>" defer></script>
     </head>
     <body>
         <main role="main" class="style-guide">

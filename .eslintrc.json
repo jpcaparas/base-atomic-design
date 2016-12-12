@@ -19,7 +19,8 @@
   "plugins": [
     "babel",
     "react",
-    "filenames"
+    "filenames",
+    "import"
   ],
   "rules": {
     "react/no-danger": 0,
@@ -28,6 +29,7 @@
       "error",
       "^[a-z-]+$"
     ],
+    "import/named": "error",
     "strict": [
       "error",
       "global"
@@ -37,6 +39,8 @@
     "block-scoped-var": "error",
     "dot-notation": "error",
     "eqeqeq": "error",
+    "no-console": "warn",
+    "no-debugger": "warn",
     "no-div-regex": "error",
     "no-else-return": "error",
     "no-empty-function": "error",
@@ -57,6 +61,7 @@
     "no-magic-numbers": [
       "error",
       {
+        "ignore": [-1, 0, 1],
         "ignoreArrayIndexes": true
       }
     ],
@@ -194,7 +199,12 @@
         "after": true
       }
     ],
-    "sort-vars": "error",
+    "sort-vars": [
+      "error",
+      {
+        "ignoreCase": true
+      }
+    ],
     "space-before-blocks": "error",
     "space-before-function-paren": [
       "error",
